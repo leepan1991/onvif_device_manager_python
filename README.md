@@ -1,0 +1,2 @@
+# onvif_device_manager_python
+准备手撸一个基于onvif协议的通用设备管理器
