@@ -7,13 +7,11 @@
 
 #### 示例:  
 - 项目截图
-
-- 项目链接
-
+![image](img/demo1.png)
 ### 编译安装
 基于Python 3.6编译，需用以下依赖库
-requests==2.25.1
-xmltodict==0.12.0
+* requests==2.25.1
+* xmltodict==0.12.0
 
 ### 使用方法
 使用pyinstaller编译代码生成exe，可以直接运行
