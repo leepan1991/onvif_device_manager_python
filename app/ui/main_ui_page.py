@@ -242,7 +242,7 @@ class Toplevel1:
         self.TButton1 = ttk.Button(top)
         self.TButton1.place(relx=0.7, rely=0.480, height=40, width=118)
         self.TButton1.configure(takefocus="")
-        self.TButton1.configure(text='''Sync datetime''')
+        self.TButton1.configure(text='''Sync DateTime''')
         self.TButton1.configure(command=self.update_timezone_and_datetime)
 
         ################IP
@@ -259,7 +259,7 @@ class Toplevel1:
         self.Label7.configure(foreground="#000000")
         self.Label7.configure(highlightbackground="#d9d9d9")
         self.Label7.configure(highlightcolor="black")
-        self.Label7.configure(text='''New IP Address''')
+        self.Label7.configure(text='''New IP Address *''')
 
         self.Text4 = tk.Text(top)
         self.Text4.place(relx=0.283, rely=0.630, relheight=0.060, relwidth=0.30)
@@ -282,7 +282,7 @@ class Toplevel1:
         self.Label11.configure(foreground="#000000")
         self.Label11.configure(highlightbackground="#d9d9d9")
         self.Label11.configure(highlightcolor="black")
-        self.Label11.configure(text='''Subnet Mask''')
+        self.Label11.configure(text='''Subnet Mask *''')
 
         self.Text5 = tk.Text(top)
         self.Text5.place(relx=0.283, rely=0.720, relheight=0.060, relwidth=0.30)
@@ -306,7 +306,7 @@ class Toplevel1:
         self.Label12.configure(foreground="#000000")
         self.Label12.configure(highlightbackground="#d9d9d9")
         self.Label12.configure(highlightcolor="black")
-        self.Label12.configure(text='''Default gateway''')
+        self.Label12.configure(text='''Default Gateway *''')
 
         self.Text6 = tk.Text(top)
         self.Text6.place(relx=0.283, rely=0.810, relheight=0.060, relwidth=0.30)
@@ -375,16 +375,20 @@ class Toplevel1:
 
     def update_ip(self):
         try:
-            result = update_ip(
-                self.Text1.get("1.0", 'end-1c'),
-                self.Text2.get("1.0", 'end-1c'),
-                self.Text3.get("1.0", 'end-1c'),
-                self.Text4.get("1.0", 'end-1c'),
-                self.Text6.get("1.0", 'end-1c'))
-            if result == 'success':
-                tkinter.messagebox.showinfo("Information", "Update Device IP success")
+            if len(self.Text4.get("1.0", 'end-1c')) > 0 and len(self.Text5.get("1.0", 'end-1c')) > 0 and len(
+                    self.Text6.get("1.0", 'end-1c')) > 0:
+                result = update_ip(
+                    self.Text1.get("1.0", 'end-1c'),
+                    self.Text2.get("1.0", 'end-1c'),
+                    self.Text3.get("1.0", 'end-1c'),
+                    self.Text4.get("1.0", 'end-1c'),
+                    self.Text6.get("1.0", 'end-1c'))
+                if result == 'success':
+                    tkinter.messagebox.showinfo("Information", "IP Address Updated Successfully.")
+                else:
+                    tkinter.messagebox.showinfo("Information", "Failed to Update IP Address.")
             else:
-                tkinter.messagebox.showinfo("Information", "Update Device IP failed")
+                tkinter.messagebox.showinfo("Information", "Please confirm whether the information is complete")
         except Exception as e:
             print(e)
             tkinter.messagebox.showerror("Error", "Please check input and connection then try again")
